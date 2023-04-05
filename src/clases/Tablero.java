@@ -35,5 +35,4 @@ public class Tablero {
             this.porSalida = true;
         return (actual + tirada) % this.casillas.size();
     }
-
 }
