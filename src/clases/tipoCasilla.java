@@ -1,7 +1,7 @@
 package clases;
 
-public enum tipoCasilla {
+public enum TipoCasilla {
     CALLE,
     DESCANSO,
-    SORPRESA
-};
+    SORPRESA;
+}

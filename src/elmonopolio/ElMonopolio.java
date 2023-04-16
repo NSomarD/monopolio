@@ -1,5 +1,5 @@
 package elmonopolio;
-import clases.*;
+// import clases.*;
 
 /**
  *
