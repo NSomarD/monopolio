@@ -48,16 +48,16 @@ public class Jugador implements Comparable<Jugador> {
     protected float getSaldo(){
         return saldo;
     }
-    private int getCasasMax(){
+    public int getCasasMax(){
         return CasasMax;
     }
-    private int getHotelesMax(){
+    public int getHotelesMax(){
         return HotelesMax;
     }
     int getCasasPorHotel(){
         return CasasPorHotel;
     }
-    private float getPremioPasoSalida(){
+    public float getPremioPasoSalida(){
         return PasoPorSalida;
     }
     // Cuantas casas u hoteles tiene este Jugador en propiedad
@@ -130,7 +130,7 @@ public class Jugador implements Comparable<Jugador> {
     @Override
     public int compareTo(Jugador otro){
         // Compara el saldo de este Jugador con el saldo del Jugador pasado como parámetro
-        return Float.compare(this.saldo, otro.saldo);
+        return Float.compare(otro.saldo, this.saldo);
     }
     // Comprueba si el Jugador ha perdido todo su dinero y ha entrado en bancarrota
     boolean enBancarrota(){

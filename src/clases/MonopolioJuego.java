@@ -1,6 +1,7 @@
 package clases;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class MonopolioJuego {
     // PROPIEDADES
@@ -37,7 +38,7 @@ public class MonopolioJuego {
     private void inicializarMazoSorpresas(){
         this.mazo.alMazo(new Sorpresa(TipoSorpresa.PAGARCOBRAR, "Pagas 100", (-100)));
         this.mazo.alMazo(new Sorpresa(TipoSorpresa.PAGARCOBRAR, "Pagas 200", (-200)));
-        this.mazo.alMazo(new Sorpresa(TipoSorpresa.PAGARCOBRAR, "Pagas 300", (-300)));z
+        this.mazo.alMazo(new Sorpresa(TipoSorpresa.PAGARCOBRAR, "Pagas 300", (-300)));
         this.mazo.alMazo(new Sorpresa(TipoSorpresa.PAGARCOBRAR, "Cobras 100", 100));
         this.mazo.alMazo(new Sorpresa(TipoSorpresa.PAGARCOBRAR, "Cobras 200", 200));
         this.mazo.alMazo(new Sorpresa(TipoSorpresa.PAGARCOBRAR, "Cobras 300", 300));
@@ -123,7 +124,8 @@ public class MonopolioJuego {
         this.estado = gestor.siguienteEstado(getJugadorActual(), estado, operacion);
     }
     private ArrayList<Jugador> ranking(){
-        // cosa
+        Collections.sort(this.jugadores);
+        return jugadores;
     }
     public boolean comprar(){
         Jugador jugadorActual = getJugadorActual();

@@ -27,15 +27,16 @@ public class Controlador {
                 vista.comprar();
             else if (juegoModel.siguientePaso() == OperacionJuego.GESTIONAR){
                 OperacionInmobiliaria operacion = vista.elegirOperacion();
-                int propiedad = vista.elegirPropiedad();
                 if (operacion == OperacionInmobiliaria.CONSTRUIR_CASA)
+                    int propiedad = vista.elegirPropiedad();
                     juegoModel.construirCasa(propiedad);
                 else if (operacion == OperacionInmobiliaria.CONSTRUIR_HOTEL)
+                    int propiedad = vista.elegirPropiedad();
                     juegoModel.construirHotel(propiedad);
                 else 
                     juegoModel.siguientePasoCompletado(juegoModel.siguientePaso());
             }
         }
-        
+        vista.actualiza();
     }
 }

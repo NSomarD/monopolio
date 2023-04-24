@@ -34,8 +34,13 @@ public class VistaTextual implements Vista {
     }
     public void actualiza(){
         System.out.println(separador);
-        System.out.println(juegoModel.getJugadorActual().toString()); // Enseña la cadena que devuelve el método del Jugador actual toString()
-        System.out.println(juegoModel.getTablero().getCasilla(juegoModel.getJugadorActual().getCasillaActual()).toString()); // Enseña la cadena que devuelve el método toString de la Casilla actual
+        if (!juegoModel.finalDelJuego()){
+            System.out.println(juegoModel.getJugadorActual().toString()); // Enseña la cadena que devuelve el método del Jugador actual toString()
+            System.out.println(juegoModel.getTablero().getCasilla(juegoModel.getJugadorActual().getCasillaActual()).toString()); // Enseña la cadena que devuelve el método toString de la Casilla actual
+        }
+        else {
+            // cosa hay que enseñar el ranking del juego   
+        }
         System.out.println(separador);
     }
     // Pediremos un número como cadena y lo pasaremos a entero. Si no es posible la conversión, vuelve a pedirlo
