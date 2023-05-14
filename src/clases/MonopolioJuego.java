@@ -2,6 +2,7 @@ package clases;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import GUI.Dado;
 
 public class MonopolioJuego {
     // PROPIEDADES
@@ -12,8 +13,9 @@ public class MonopolioJuego {
     private MazoSorpresas mazo;
     private Tablero tablero;
     // CONTRUCTOR
-    MonopolioJuego(ArrayList<String> nombres, boolean debug){
+    public MonopolioJuego(ArrayList<String> nombres, boolean debug){
         // Por cada nombre de la lista introducida se crea un jugador
+        this.jugadores = new ArrayList<Jugador>();
         for(String nombre : nombres){
             this.jugadores.add(new Jugador(nombre));
         }
@@ -123,7 +125,7 @@ public class MonopolioJuego {
     public void siguientePasoCompletado(OperacionJuego operacion){
         this.estado = gestor.siguienteEstado(getJugadorActual(), estado, operacion);
     }
-    private ArrayList<Jugador> ranking(){
+    public ArrayList<Jugador> ranking(){
         Collections.sort(this.jugadores);
         return jugadores;
     }

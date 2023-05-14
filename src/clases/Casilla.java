@@ -133,8 +133,8 @@ public class Casilla {
       Diario.getInstance().ocurreEvento("El jugador " + todos.get(actual).getNombre() + " ha pasado por la casilla " + this.getNombre());
    }
    public String toString(){
-      String infoObjeto = "Nombre = " + this.getNombre() + "\nTipo = " + this.getTipo() + "\nPrecio de Compra = " + this.getPrecioCompra()
-      + "\nPrecio de Edificar = " + this.getPrecioEdificar() + "\nPrecio del Alquiler = " + getPrecioAlquilerCompleto() + "\nPropietario = " + this.getPropietario();
+      String infoObjeto = "Nombre = " + this.getNombre() + ", Tipo = " + this.getTipo() + ", Precio de Compra = " + this.getPrecioCompra()
+      + ", Precio de Edificar = " + this.getPrecioEdificar() + ", Precio del Alquiler = " + getPrecioAlquilerCompleto() + ", Propietario = " + this.getPropietario();
       return infoObjeto;
    }
    // Devuelve si el jugador pasado es o no el propietario

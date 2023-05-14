@@ -13,8 +13,8 @@ public class Jugador implements Comparable<Jugador> {
     protected int CasasMax = 4;
     protected int CasasPorHotel = 4; // Cuantas casas valen un hotel
     protected int HotelesMax = 4;
-    protected float PasoPorSalida = 1000f;
-    private float SaldoInicial = 7500f;
+    protected float PasoPorSalida = 100f;
+    private float SaldoInicial = 750f;
     // CONSTRUCTORES
     // Constructor normal
     Jugador(String nombre){
@@ -33,7 +33,7 @@ public class Jugador implements Comparable<Jugador> {
         this.propiedades = new ArrayList<Casilla>(); 
     }
     // CONSULTORES
-    protected String getNombre(){
+    public String getNombre(){
         return this.nombre;
     }
     public ArrayList<Casilla> getPropiedades(){
@@ -45,7 +45,7 @@ public class Jugador implements Comparable<Jugador> {
     boolean getPuedeComprar(){
         return puedeComprar;
     }
-    protected float getSaldo(){
+    public float getSaldo(){
         return saldo;
     }
     public int getCasasMax(){

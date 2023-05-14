@@ -17,8 +17,6 @@ public class VistaTextual implements Vista {
     // PROPIEDADES
     private Scanner in;
     MonopolioJuego juegoModel;
-    private int iPropiedad;
-    private int iGestion;
     // CONSTRUCTOR
     public VistaTextual (MonopolioJuego juegoModel){
         in = new Scanner (System.in); // El objeto Scanner es el que nos facilitará la implementación de inputs
@@ -33,13 +31,17 @@ public class VistaTextual implements Vista {
         System.out.println(separador);
     }
     public void actualiza(){
+        mostrarEventos();
         System.out.println(separador);
         if (!juegoModel.finalDelJuego()){
+            System.out.println("--------INFO--------");
             System.out.println(juegoModel.getJugadorActual().toString()); // Enseña la cadena que devuelve el método del Jugador actual toString()
             System.out.println(juegoModel.getTablero().getCasilla(juegoModel.getJugadorActual().getCasillaActual()).toString()); // Enseña la cadena que devuelve el método toString de la Casilla actual
         }
         else {
-            // cosa hay que enseñar el ranking del juego   
+            for(Jugador jugador : juegoModel.ranking()) {
+                System.out.println(jugador.getNombre());
+            }
         }
         System.out.println(separador);
     }
@@ -120,7 +122,7 @@ public class VistaTextual implements Vista {
     // Enseña por pantalla la operación introducida como parámetro
     public void mostrarSiguienteOperacion(OperacionJuego operacion){
         System.out.println(separador);        
-        System.out.print(operacion);
+        System.out.println(operacion);
         System.out.println(separador);
     }
     // Muestra todos los eventos pendientes por pantalla

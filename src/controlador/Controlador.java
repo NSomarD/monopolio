@@ -6,35 +6,79 @@ import clases.OperacionInmobiliaria;
 import clases.OperacionJuego;
 import vistaText.Vista;
 import vistaText.VistaTextual;
+import GUI.*;
 
 public class Controlador {
     // PROPIEDADES
     private MonopolioJuego juegoModel;
-    private Vista vista;
+    // private Vista vista;
+    private ElMonopolioVista vista;
     // CONSTRUCTOR
-    Controlador(MonopolioJuego juego, VistaTextual vista){
-        // cosa
+    public Controlador(MonopolioJuego juego, ElMonopolioVista vista){
+        this.juegoModel = juego;
+        this.vista = vista;
     }
     // OTROS MÉTODOS
     public void juega(){
         while (!juegoModel.finalDelJuego()){
             vista.actualiza();
             vista.pausa();
-            vista.mostrarSiguienteOperacion(juegoModel.siguientePaso());
-            if (juegoModel.siguientePaso() != OperacionJuego.PASAR_TURNO)
+            OperacionJuego operacion = juegoModel.siguientePaso();
+            vista.mostrarSiguienteOperacion(operacion);
+            
+            if (operacion != OperacionJuego.PASAR_TURNO){
                 vista.mostrarEventos();
-            else if (juegoModel.siguientePaso() == OperacionJuego.COMPRAR)
-                vista.comprar();
-            else if (juegoModel.siguientePaso() == OperacionJuego.GESTIONAR){
-                OperacionInmobiliaria operacion = vista.elegirOperacion();
-                if (operacion == OperacionInmobiliaria.CONSTRUIR_CASA)
-                    int propiedad = vista.elegirPropiedad();
-                    juegoModel.construirCasa(propiedad);
-                else if (operacion == OperacionInmobiliaria.CONSTRUIR_HOTEL)
-                    int propiedad = vista.elegirPropiedad();
-                    juegoModel.construirHotel(propiedad);
-                else 
-                    juegoModel.siguientePasoCompletado(juegoModel.siguientePaso());
+            }
+
+            // if (juegoModel.siguientePaso() == OperacionJuego.COMPRAR){
+            //     vista.actualiza();
+            //     if (vista.comprar() == Respuesta.SI){
+            //         juegoModel.comprar();
+            //         vista.actualiza();
+            //     }
+            //     juegoModel.siguientePasoCompletado(juegoModel.siguientePaso());
+            // }
+            // else if (juegoModel.siguientePaso() == OperacionJuego.GESTIONAR){
+            //     vista.actualiza();
+            //     OperacionInmobiliaria operacion = vista.elegirOperacion();
+            //     if (operacion == OperacionInmobiliaria.CONSTRUIR_CASA){
+            //         int propiedad = vista.elegirPropiedad();
+            //         juegoModel.construirCasa(propiedad);
+            //         juegoModel.siguientePasoCompletado(juegoModel.siguientePaso());
+            //         vista.actualiza();
+            //     }
+            //     else if (operacion == OperacionInmobiliaria.CONSTRUIR_HOTEL){
+            //         int propiedad = vista.elegirPropiedad();
+            //         juegoModel.construirHotel(propiedad);
+            //         juegoModel.siguientePasoCompletado(juegoModel.siguientePaso());
+            //         vista.actualiza();
+            //     }
+            //     else {
+            //         juegoModel.siguientePasoCompletado(juegoModel.siguientePaso());
+            //         vista.actualiza();
+            //     }
+            // }
+            // else
+            //     vista.actualiza();
+        
+            switch(operacion){
+                case COMPRAR:
+                    if(vista.comprar() == Respuesta.SI)
+                        juegoModel.comprar();
+                    juegoModel.siguientePasoCompletado(operacion);
+                break;
+                case GESTIONAR:
+                    OperacionInmobiliaria oper = vista.elegirOperacion();
+                    if(oper != OperacionInmobiliaria.TERMINAR){
+                        int numero = vista.elegirPropiedad();
+                        if(oper == OperacionInmobiliaria.CONSTRUIR_CASA)
+                            juegoModel.construirCasa(numero);
+                        else
+                            juegoModel.construirHotel(numero);
+                    }
+                    else
+                        juegoModel.siguientePasoCompletado(operacion);
+                break;
             }
         }
         vista.actualiza();
